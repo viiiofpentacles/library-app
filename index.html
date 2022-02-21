@@ -9,13 +9,39 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+<div class="container">
     <div id="actions-bar">
-        <title>Library</title>
+        <h1>Library</h1>
+        <div>
         <button class="new-book">New Book</button>
         <form id="new-book-form">
+            
+            <label for="title">Book Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="pages">No. of Pages</label>
+            <input type="number" id="pages" name="pages" required>
+
+            <p class="read-status">Status</p>
+
+            <label for="read">Read</label>
+            <input type="radio" id="read" name="status" required>
+
+            <label for="reading">Reading</label>
+            <input type="radio" id="reading" name="status" required>
+
+            <label for="unread">Unread</label>
+            <input type="radio" id="unread" name="status" required>
+
+            <button type="submit" class="submit-button">Add</button>
 
         </form>
+        </div>  
     </div>
     <div id="shelf"></div>
+</div>
 </body>
 </html>

@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    height: 100vh;
+}
+
+#actions-bar {
+    padding: 1rem;
+    display: grid;
+    grid-template-rows: 1fr 4fr;
+    justify-items: start;
+    align-items: start;
+    gap: 1rem;
+
+    color: rgb(247, 174, 174);
+    background-color: rgb(41, 41, 49);
+    border-right-width: 2px;
+    border-right-style: solid;
+    border-image: linear-gradient(rgb(255, 86, 227), rgba(214, 0, 214, 0.747)) 1;
+}
+
+.new-book {
+    margin-bottom: 1rem;
+}
+
+
+#new-book-form {
+    display: grid;
+    gap: 0.4rem;
+}
+
+#shelf {
+    background-color: rgb(202, 187, 187);
+}
