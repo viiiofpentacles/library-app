@@ -24,7 +24,7 @@
     border-image: linear-gradient(rgb(255, 86, 227), rgba(214, 0, 214, 0.747)) 1;
 }
 
-.new-book {
+#new-book {
     margin-bottom: 1rem;
 }
 

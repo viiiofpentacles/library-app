@@ -42,3 +42,13 @@ library.forEach(book => {
     
 });
 }
+
+const formToggle = document.getElementById("new-book-form");
+formToggle.style.display = "none";
+const newBookButton = document.getElementById("new-book").addEventListener("click", () => {
+    if(formToggle.style.display === "none"){
+        formToggle.style.display = "grid";
+    }else {
+        formToggle.style.display = "none";
+    }
+})
