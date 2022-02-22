@@ -36,4 +36,17 @@
 
 #shelf {
     background-color: rgb(202, 187, 187);
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+#shelf>div {
+    color: rgb(160, 26, 104);
+    background-color: rgb(255, 245, 245);
+    border: 2px solid purple;
+    border-radius: 8px;
+    padding: 0.8rem;
 }
