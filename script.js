@@ -22,7 +22,9 @@ function addBook(form) {
 
     form.reset();
     library.push(newBook);
-    shelf.removeChild(shelf.firstChild);
+    while(shelf.firstChild) {
+        shelf.removeChild(shelf.firstChild);
+    };
     return addToShelf();
       
 }
@@ -34,11 +36,26 @@ library.forEach(book => {
     const bookCard = document.createElement("div");
     
     for (const detail in book) {
-    const divContent = document.createElement("div")
-    divContent.innerText = `${detail}: ${book[detail]}`;    
+    const divContent = document.createElement("div");
+    divContent.innerText = `${detail}: ${book[detail]}`;
+    
     bookCard.appendChild(divContent);
+  
     shelf.appendChild(bookCard);
     }
+
+    const deleteButton = document.createElement("button");
+        deleteButton.textContent = "Delete";
+        deleteButton.addEventListener("click", () => {
+            const index = library.indexOf(book);
+            library.splice(index, 1);
+            
+            while(shelf.firstChild) {
+                shelf.removeChild(shelf.firstChild);
+            };
+            return addToShelf();
+        });
+    bookCard.appendChild(deleteButton);
     
 });
 }
