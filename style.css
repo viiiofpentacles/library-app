@@ -24,14 +24,41 @@
     border-image: linear-gradient(rgb(255, 86, 227), rgba(214, 0, 214, 0.747)) 1;
 }
 
-#new-book {
+#new-book,
+.submit-button {
     margin-bottom: 1rem;
+    padding: 8px;
+    border-style: none;
+    border-radius: 6px;
+    background-color: rgb(247, 174, 174);
+    color: rgb(41, 41, 49);
+    font-weight: 800;
 }
 
+#new-book:hover,
+.submit-button:hover {
+    cursor: pointer;
+    filter: brightness(0.8);
+}
 
 #new-book-form {
     display: grid;
-    gap: 0.4rem;
+    gap: 0.5rem;
+}
+
+input {
+    border-radius: 6px;
+}
+
+label,
+.read-status {
+    font-weight: 600;
+    padding-bottom: 0.2rem;
+}
+
+.radio-buttons {
+    display: grid;
+    gap: 0.5rem;
 }
 
 #shelf {
@@ -46,7 +73,23 @@
 #shelf>div {
     color: rgb(160, 26, 104);
     background-color: rgb(255, 245, 245);
-    border: 2px solid purple;
+    border: 4px solid purple;
     border-radius: 8px;
     padding: 0.8rem;
+}
+
+#shelf>div button {
+    margin: 0.4rem;
+    margin-top: 1rem;
+    padding: 8px;
+    border-style: none;
+    border-radius: 6px;
+    background-color: purple;
+    color: rgb(247, 174, 174);
+    font-weight: 800;
+}
+
+#shelf>div button:hover {
+    cursor: pointer;
+    filter: brightness(1.4);
 }

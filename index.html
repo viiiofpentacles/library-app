@@ -25,17 +25,21 @@
             <label for="pages">No. of Pages</label>
             <input type="number" id="pages" name="pages" required>
 
-            <p class="read-status">Status</p>
-
+            <p class="read-status">Status:</p>
+            <div class="radio-buttons">
+            <div>
             <label for="read">Read</label>
             <input type="radio" id="read" name="status" value="read" required>
-
+            </div>
+            <div>
             <label for="reading">Reading</label>
             <input type="radio" id="reading" name="status" value="reading" required>
-
+            </div>
+            <div>
             <label for="unread">Unread</label>
             <input type="radio" id="unread" name="status" value="unread" required>
-
+            </div>    
+            </div>
             <button type = "submit" class="submit-button">Add</button>
 
         </form>
