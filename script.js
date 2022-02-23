@@ -44,12 +44,32 @@ library.forEach(book => {
     shelf.appendChild(bookCard);
     }
 
+    const updateStatus = document.createElement("button");
+        updateStatus.textContent = "Update Status";
+        updateStatus.addEventListener("click", () => {
+        const index = library.indexOf(book);
+        
+        if(library[index].Status === "read"){
+        library[index].Status = "unread";
+        } else if(library[index].Status === "unread"){
+            library[index].Status = "reading";
+        } else if (library[index].Status === "reading"){
+            library[index].Status = "read";
+        }
+
+        while(shelf.firstChild) {
+            shelf.removeChild(shelf.firstChild);
+        };
+        return addToShelf();
+    })
+    bookCard.appendChild(updateStatus);
+
     const deleteButton = document.createElement("button");
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", () => {
             const index = library.indexOf(book);
             library.splice(index, 1);
-            
+
             while(shelf.firstChild) {
                 shelf.removeChild(shelf.firstChild);
             };
