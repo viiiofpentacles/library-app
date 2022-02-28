@@ -16,21 +16,7 @@ class Book {
 
     static shelf = document.getElementById("shelf");
 
-    addToShelf() {
-        library.forEach(book => {
-            const bookCard = document.createElement("div");
-    
-            for (const detail in book) {
-            const divContent = document.createElement("div");
-            divContent.innerText = `${detail}: ${book[detail]}`;
-            bookCard.appendChild(divContent);
-            }
-        
-        shelf.appendChild(bookCard);
-        })   
-        }
-
-    updateStatus() {
+    static updateStatus = () => {
         document.createElement("button");
         updateStatus.textContent = "Update Status";
         updateStatus.addEventListener("click", () => {
@@ -48,25 +34,44 @@ class Book {
             shelf.removeChild(shelf.firstChild);
         };
         return addToShelf();
-    })
-    
-    bookCard.appendChild(updateStatus);
+        })
+    }
 
-    deleteButton = document.createElement("button");
-        deleteButton.textContent = "Delete";
-        deleteButton.addEventListener("click", () => {
-            const index = library.indexOf(book);
-            library.splice(index, 1);
+    static deleteButton = () => {
+    document.createElement("button");
+    deleteButton.textContent = "Delete";
+    deleteButton.addEventListener("click", () => {
+        const index = library.indexOf(book);
+        library.splice(index, 1);
 
-            while(shelf.firstChild) {
-                shelf.removeChild(shelf.firstChild);
-            };
-            return addToShelf();
+        while(shelf.firstChild) {
+            shelf.removeChild(shelf.firstChild);
+        };
+        return addToShelf();
         });
-    bookCard.appendChild(deleteButton);
+    }
+
+    addToShelf() {
+        library.forEach(book => {
+            const bookCard = document.createElement("div");
     
-};
+            for (const detail in book) {
+            const divContent = document.createElement("div");
+            divContent.innerText = `${detail}: ${book[detail]}`;
+            bookCard.appendChild(divContent);
+            bookCard.appendChild(updateStatus());
+            bookCard.appendChild(deleteButton());
+            }
+        
+        shelf.appendChild(bookCard);
+        })   
+        }
+ 
 }
+
+
+
+
 
 function addBook(form) {
     let newBook = new Book(
