@@ -13,18 +13,24 @@ class Book {
         event.preventDefault();
     });
 
-
     static shelf = document.getElementById("shelf");
 
-        addToShelf() {
-            library.forEach(book => {
-                const bookCard = document.createElement("div");
+    updateDisplay() {
+        while(shelf.firstChild) {
+            shelf.removeChild(shelf.firstChild);
+        };
+        this.addToShelf();
+    }
+
+    addToShelf() {
+        library.forEach(book => {
+            const bookCard = document.createElement("div");
         
-                for (const detail in book) {
-                const divContent = document.createElement("div");
-                divContent.innerText = `${detail}: ${book[detail]}`;
-                bookCard.appendChild(divContent);
-                }
+            for (const detail in book) {
+            const divContent = document.createElement("div");
+            divContent.innerText = `${detail}: ${book[detail]}`;
+            bookCard.appendChild(divContent);
+            }
             
             shelf.appendChild(bookCard);
            
@@ -40,7 +46,7 @@ class Book {
             } else if (library[index].Status === "reading"){
                 library[index].Status = "read";
             }
-
+            this.updateDisplay();
             })
             bookCard.appendChild(updateStatusButton);
 
@@ -51,10 +57,8 @@ class Book {
                 const index = library.indexOf(book);
                 library.splice(index, 1);
         
-                while(shelf.firstChild) {
-                    shelf.removeChild(shelf.firstChild);
-                };
-                
+                this.updateDisplay();
+            
                 });
                             
             bookCard.appendChild(deleteButton);
@@ -62,8 +66,6 @@ class Book {
             })   
             }
 
-        
-    
 }
 
 
