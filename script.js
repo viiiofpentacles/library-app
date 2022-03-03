@@ -34,6 +34,7 @@ class Book {
             
             shelf.appendChild(bookCard);
            
+
             const updateStatusButton = document.createElement("button");
             updateStatusButton.textContent = "Update Status";
             updateStatusButton.addEventListener("click", () => {
@@ -64,7 +65,7 @@ class Book {
             bookCard.appendChild(deleteButton);
           
             })   
-            }
+    }
 
 }
 
