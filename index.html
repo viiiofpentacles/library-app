@@ -14,7 +14,7 @@
         <h1>Library</h1>
         <div>
         <button id="new-book">New Book</button>
-        <form id="new-book-form">
+        <form id="new-book-form" novalidate> 
             
             <label for="title">Book Title</label>
             <input type="text" id="title" name="title" required>
@@ -41,7 +41,7 @@
             </div>    
             </div>
             <button type = "submit" class="submit-button">Add</button>
-
+            <span id = "error-message" aria-live="polite"></span>
         </form>
         </div>  
     </div>
