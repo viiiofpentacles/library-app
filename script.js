@@ -12,6 +12,7 @@ class Book {
         if ((/^\d+$/.test(pagesInput.value)) && (document.querySelector('input[name="status"]:checked') != null)) {
         addBook(this);
         event.preventDefault();
+        errorMessage.textContent = '';
         } else {
             displayError();
             event.preventDefault();
@@ -101,7 +102,6 @@ const newBookButton = document.getElementById("new-book").addEventListener("clic
         formToggle.style.display = "none";
     }
 })
-
 
 const errorMessage = document.getElementById('error-message');
 const titleInput = document.getElementById('title');
