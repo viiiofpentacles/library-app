@@ -50,6 +50,10 @@ input {
     border-radius: 6px;
 }
 
+span {
+    width:  14rem;
+}
+
 label,
 .read-status {
     font-weight: 600;
