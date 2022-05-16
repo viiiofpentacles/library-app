@@ -1,3 +1,5 @@
+import './style.css';
+
 let library = [];
 
 class Book {
@@ -78,9 +80,9 @@ class Book {
 
 function addBook(form) {
     let newBook = new Book(
-        this.title.value,
-        this.author.value,
-        this.pages.value,
+        form.title.value,
+        form.author.value,
+        form.pages.value,
         document.querySelector("input[type=radio]:checked").value
     );
 
