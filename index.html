@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <div id="actions-bar">
+        <h1>Library</h1>
+        <div>
+        <button id="new-book">New Book</button>
+        <form id="new-book-form" novalidate> 
+            
+            <label for="title">Book Title</label>
+            <input type="text" id="title" name="title" required>
+
+            <label for="author">Author</label>
+            <input type="text" id="author" name="author" required>
+
+            <label for="pages">No. of Pages</label>
+            <input type="number" id="pages" name="pages" required>
+
+            <p class="read-status">Status:</p>
+            <div class="radio-buttons">
+            <div>
+            <label for="read">Read</label>
+            <input type="radio" id="read" name="status" value="read" required>
+            </div>
+            <div>
+            <label for="reading">Reading</label>
+            <input type="radio" id="reading" name="status" value="reading" required>
+            </div>
+            <div>
+            <label for="unread">Unread</label>
+            <input type="radio" id="unread" name="status" value="unread" required>
+            </div>    
+            </div>
+            <button type = "submit" class="submit-button">Add</button>
+            <span id = "error-message" aria-live="polite"></span>
+        </form>
+        </div>  
+    </div>
+    <div id="shelf">
+    </div>
+</div>
+</body>
+</html>
