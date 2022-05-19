@@ -2,15 +2,14 @@ import './style.css';
 import { loadBooks, addBookToFirestore } from './firestore';
 import createBookCard from './bookcard';
 
-const library = [];
-loadBooks(library);
+loadBooks();
 
 class Book {
     constructor(title, author, pages, status) {
-    this.Title = title;
-    this.Author = author;
-    this.Pages = pages;
-    this.Status = status;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.status = status;
     }
 
     static form = document.querySelector("#new-book-form").addEventListener("submit", function(event){
@@ -34,27 +33,19 @@ class Book {
 
 }
 
-function addBook(form) {
-    let newBook = new Book(
-        form.title.value,
-        form.author.value,
-        form.pages.value,
-        document.querySelector("input[type=radio]:checked").value
-    );
+async function addBook(form) {
 
-    addBookToFirestore(form);
+    await addBookToFirestore(form);
     form.reset();
-    library.push(newBook);
     while(shelf.firstChild) {
         shelf.removeChild(shelf.firstChild);
     };
-    return newBook.addToShelf();
-      
+    loadBooks();
 }
 
 const formToggle = document.getElementById("new-book-form");
 formToggle.style.display = "none";
-const newBookButton = document.getElementById("new-book").addEventListener("click", () => {
+document.getElementById("new-book").addEventListener("click", () => {
     if(formToggle.style.display === "none"){
         formToggle.style.display = "grid";
     }else {

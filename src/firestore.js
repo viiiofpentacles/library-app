@@ -7,12 +7,11 @@ const firebaseConfig = getConfig();
 const app = initializeApp(firebaseConfig);  
 const db = getFirestore(app);
 
-async function loadBooks (library) {
+async function loadBooks () {
     const booksQuery = await getDocs(collection(db, 'books'));
     booksQuery.forEach((doc) => {
         const bookDetails = doc.data();
-        createBookCard(bookDetails, library);
-        library.push(bookDetails);
+        createBookCard(bookDetails);
     });
 }
 
