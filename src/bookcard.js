@@ -15,8 +15,7 @@ function createBookCard (book) {
             const updateStatusButton = document.createElement("button");
                 updateStatusButton.textContent = "Update Status";
                 updateStatusButton.addEventListener("click", () => {
-                const index = library.indexOf(book);
-            
+
                 if(library[index].Status === "read"){
                 library[index].Status = "unread";
                 } else if(library[index].Status === "unread"){

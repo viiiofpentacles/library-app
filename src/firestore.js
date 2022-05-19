@@ -19,6 +19,11 @@ async function deleteBook (book) {
     await deleteDoc(doc(db, 'books', book));
 }
 
+async function updateStatus (title, status) {
+    const bookRef = db.collection('book').doc(title);
+    await bookRef.update({status: status});
+}
+
 async function addBookToFirestore (form) {
     const title = form.title.value;
 
@@ -35,4 +40,4 @@ async function addBookToFirestore (form) {
       }
 }
 
-export { loadBooks, deleteBook, addBookToFirestore };
+export { loadBooks, deleteBook, updateStatus, addBookToFirestore };
