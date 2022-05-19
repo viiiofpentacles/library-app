@@ -4,4 +4,3 @@ A simple web app created to practice object constructors. The app adds to the li
 
 Live preview [here](https://viiiofpentacles.github.io/library-app/).  
 
-*Note: The preview version does not include the firestore funcitonality to prevent abuse.  
