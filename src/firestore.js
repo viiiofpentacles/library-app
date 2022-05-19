@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, setDoc, doc,deleteDoc } from "firebase/firestore";
+import { getFirestore, collection, getDocs, setDoc, doc, deleteDoc, updateDoc } from "firebase/firestore";
 import getConfig from './getconfig';
 import createBookCard from "./bookcard";
 
@@ -20,8 +20,10 @@ async function deleteBook (book) {
 }
 
 async function updateStatus (title, status) {
-    const bookRef = db.collection('book').doc(title);
-    await bookRef.update({status: status});
+    const bookRef = doc(db, "books", title);
+    await updateDoc(bookRef, 
+        {status: status}
+        );
 }
 
 async function addBookToFirestore (form) {

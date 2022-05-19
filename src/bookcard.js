@@ -1,4 +1,4 @@
-import { deleteBook } from './firestore';
+import { deleteBook, updateStatus } from './firestore';
 
 function createBookCard (book) {
     const bookCard = document.createElement("div");
@@ -6,6 +6,7 @@ function createBookCard (book) {
         
             for (const detail in book) {
                 const divContent = document.createElement("div");
+                divContent.classList.add(`${book.title}${detail}`);
                 divContent.innerText = `${detail}: ${book[detail]}`;
                 bookCard.appendChild(divContent);
             }
@@ -15,16 +16,9 @@ function createBookCard (book) {
             const updateStatusButton = document.createElement("button");
                 updateStatusButton.textContent = "Update Status";
                 updateStatusButton.addEventListener("click", () => {
-
-                if(library[index].Status === "read"){
-                library[index].Status = "unread";
-                } else if(library[index].Status === "unread"){
-                library[index].Status = "reading";
-                } else if (library[index].Status === "reading"){
-                library[index].Status = "read";
-                }
+                    updateDOMStatus(book);
                 })
-            bookCard.appendChild(updateStatusButton);
+                bookCard.appendChild(updateStatusButton);
 
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
@@ -34,6 +28,19 @@ function createBookCard (book) {
                 });
                             
             bookCard.appendChild(deleteButton);         
+}
+
+async function updateDOMStatus (book) {
+    let statusText = document.querySelector(`.${book.title}status`);
+        if(statusText.textContent === "status: read"){
+            statusText.textContent = "status: unread";
+        } else if(statusText.textContent === "status: unread"){
+            statusText.textContent = "status: reading";
+        } else if (statusText.textContent === "status: reading"){
+            statusText.textContent = "status: read";
+        }
+    let status = statusText.textContent.split(' ');
+    updateStatus(book.title, status[1]); 
 }
 
 export default createBookCard;

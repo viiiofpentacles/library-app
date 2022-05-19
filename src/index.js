@@ -2,8 +2,6 @@ import './style.css';
 import { loadBooks, addBookToFirestore } from './firestore';
 import createBookCard from './bookcard';
 
-loadBooks();
-
 class Book {
     constructor(title, author, pages, status) {
     this.title = title;
@@ -71,3 +69,5 @@ function displayError() {
         errorMessage.textContent = 'Please select the reading status.'
     }
 }
+
+loadBooks();
