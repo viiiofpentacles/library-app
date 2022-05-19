@@ -1,6 +1,9 @@
 import './style.css';
+import { loadBooks, addBookToFirestore } from './firestore';
+import createBookCard from './bookcard';
 
-let library = [];
+const library = [];
+loadBooks(library);
 
 class Book {
     constructor(title, author, pages, status) {
@@ -23,60 +26,13 @@ class Book {
 
     static shelf = document.getElementById("shelf");
 
-    updateDisplay() {
-        while(shelf.firstChild) {
-            shelf.removeChild(shelf.firstChild);
-        };
-        this.addToShelf();
-    }
-
     addToShelf() {
         library.forEach(book => {
-            const bookCard = document.createElement("div");
-        
-            for (const detail in book) {
-            const divContent = document.createElement("div");
-            divContent.innerText = `${detail}: ${book[detail]}`;
-            bookCard.appendChild(divContent);
-            }
-            
-            shelf.appendChild(bookCard);
-           
-
-            const updateStatusButton = document.createElement("button");
-            updateStatusButton.textContent = "Update Status";
-            updateStatusButton.addEventListener("click", () => {
-            const index = library.indexOf(book);
-            
-            if(library[index].Status === "read"){
-            library[index].Status = "unread";
-            } else if(library[index].Status === "unread"){
-                library[index].Status = "reading";
-            } else if (library[index].Status === "reading"){
-                library[index].Status = "read";
-            }
-            this.updateDisplay();
-            })
-            bookCard.appendChild(updateStatusButton);
-
-
-            const deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
-            deleteButton.addEventListener("click", () => {
-                const index = library.indexOf(book);
-                library.splice(index, 1);
-        
-                this.updateDisplay();
-            
-                });
-                            
-            bookCard.appendChild(deleteButton);
-          
+            createBookCard(book);
             })   
     }
 
 }
-
 
 function addBook(form) {
     let newBook = new Book(
@@ -86,6 +42,7 @@ function addBook(form) {
         document.querySelector("input[type=radio]:checked").value
     );
 
+    addBookToFirestore(form);
     form.reset();
     library.push(newBook);
     while(shelf.firstChild) {
