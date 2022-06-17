@@ -1,16 +1,13 @@
-import { deleteBook, updateStatus } from './firestore';
+import { loadBooks, deleteBook, updateStatus } from './firestore';
 
 function createBookCard (book) {
     const bookCard = document.createElement("div");
-    bookCard.classList.add(book.title);
-        
-            for (const detail in book) {
-                const divContent = document.createElement("div");
-                divContent.classList.add(`${book.title}${detail}`);
-                divContent.innerText = `${detail}: ${book[detail]}`;
-                bookCard.appendChild(divContent);
-            }
-            
+
+            bookCard.appendChild(generateContentDivs("Title", book.title));
+            bookCard.appendChild(generateContentDivs("Author", book.author));
+            bookCard.appendChild(generateContentDivs("Pages", book.pages));
+            bookCard.appendChild(generateContentDivs("Status", book.status));
+    
             shelf.appendChild(bookCard);
            
             const updateStatusButton = document.createElement("button");
@@ -22,25 +19,40 @@ function createBookCard (book) {
 
             const deleteButton = document.createElement("button");
             deleteButton.textContent = "Delete";
-            deleteButton.addEventListener("click", () => {
-                deleteBook(book.title);
-                document.querySelector(`.${book.title}`).remove();
+            deleteButton.addEventListener("click", async function () {
+                await deleteBook(book.title);
+                const shelf = document.getElementById("shelf");
+                while (shelf.firstChild) {
+                    shelf.removeChild(shelf.lastChild);
+                }
+                loadBooks();
                 });
                             
             bookCard.appendChild(deleteButton);         
 }
 
 async function updateDOMStatus (book) {
-    let statusText = document.querySelector(`.${book.title}status`);
-        if(statusText.textContent === "status: read"){
-            statusText.textContent = "status: unread";
-        } else if(statusText.textContent === "status: unread"){
-            statusText.textContent = "status: reading";
-        } else if (statusText.textContent === "status: reading"){
-            statusText.textContent = "status: read";
+        if(book.status === "read"){
+            book.status = "unread";
+        } else if(book.status === "unread"){
+            book.status = "reading";
+        } else if (book.status === "reading"){
+            book.status = "read";
         }
-    let status = statusText.textContent.split(' ');
-    updateStatus(book.title, status[1]); 
+
+    await updateStatus(book.title, book.status); 
+    
+    const shelf = document.getElementById("shelf");
+        while (shelf.firstChild) {
+            shelf.removeChild(shelf.lastChild);
+        }
+    loadBooks();
+}
+
+function generateContentDivs (item, content) {
+    const divContent = document.createElement("div");
+    divContent.textContent = item + ": " + content;
+    return divContent;
 }
 
 export default createBookCard;
